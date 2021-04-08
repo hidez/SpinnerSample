@@ -18,10 +18,18 @@
 
         <Spinner
             android:id="@+id/spnner_artist"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:layout_weight="1"
             android:spinnerMode="dropdown" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:text="みたいになりたいものだね。"
+            android:textSize="17sp"/>
 
     </LinearLayout>
 
