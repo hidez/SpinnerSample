@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 
@@ -18,13 +17,13 @@ class MainActivity : AppCompatActivity() {
 
     //region ITEMS ON SPINNER
 
-    val spinnerItems = listOf<String>(
-            "ジミ・ヘンドリックス",
-            "エリック・クラプトン",
-            "スティーヴィー・レイ・ヴォーン",
-            "フランク・ザッパ",
-            "ピート・タウンゼント",
-            "スティーヴ・クロッパー",
+    val spinnerItems = listOf<CustomSpinnerHolder>(
+            CustomSpinnerHolder("ジミ・ヘンドリックス", "ジミヘン"),
+            CustomSpinnerHolder("エリック・クラプトン", "クラプトン"),
+            CustomSpinnerHolder("スティーヴィー・レイ・ヴォーン", "SRV"),
+            CustomSpinnerHolder("フランク・ザッパ", "ザッパ"),
+            CustomSpinnerHolder("ピート・タウンゼント", "ピート"),
+            CustomSpinnerHolder("スティーヴ・クロッパー", "クロッパー"),
     )
 
     //endregion
@@ -37,8 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         spArtist = findViewById<Spinner>(R.id.spnner_artist)
 
-        val adapter = ArrayAdapter<String>(this, R.layout.spinner_artist, spinnerItems)
-        adapter.setDropDownViewResource(R.layout.spinner_artist_dropdown)
+        val adapter = CustomSpinnerAdapter(this, spinnerItems)
         spArtist.adapter = adapter
         spArtist.onItemSelectedListener = spinnerItemSelectedListener()
     }
@@ -55,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             when(parent?.id) {
                 R.id.spnner_artist -> {
-                    Toast.makeText(this@MainActivity, spinnerItems[position], Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, spinnerItems[position].name, Toast.LENGTH_SHORT).show()
                 }
             }
         }
